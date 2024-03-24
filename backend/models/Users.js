@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
+    max: [30, "Wrong Username! Username length maximum 20"],
+    min: [8, "Wrong Username! Username length minimum 8"],
   },
   location: {
     type: String,
@@ -17,6 +19,8 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    max: [30, "Wrong Password! Password length maximum 30"],
+    min: [8, "Wrong Password! Password length minimum 8"],
   },
   Date: {
     type: Date,
