@@ -31,28 +31,53 @@ export const Carousel = () => {
           ></button>
         </div>
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div
+            className="carousel-caption d-flex align-items-center justify-content-center "
+            style={{ zIndex: "10", paddingBottom: "20rem" }}
+          >
+            <form className="d-flex" style={{ height: "3rem", width: "40rem" }}>
+              <input
+                className="form-control me-2 fw-bold fs-5 "
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                className="btn btn-outline-success text-white bg-success fw-bold fs-5 "
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+          <div
+            className="carousel-item active"
+            style={{ width: "100%", height: "90vh" }}
+          >
             <img
-              src="https://source.unsplash.com/random/600×700/?burger"
-              className="h-100 w-100"
+              src="https://source.unsplash.com/random/600×400/?burger"
               alt=""
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
           </div>
-          <div className="carousel-item">
+          <div
+            className="carousel-item "
+            style={{ width: "100%", height: "100vh" }}
+          >
             <img
-              src="https://source.unsplash.com/random/600×700/?fruit"
-              className="d-block h-100 w-100"
+              src="https://source.unsplash.com/random/200×700/?pizza"
               alt=""
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
           </div>
-          <div className="carousel-item">
+          <div
+            className="carousel-item"
+            style={{ width: "100%", height: "100vh" }}
+          >
             <img
-              src="https://source.unsplash.com/random/600×700/?pizza"
-              className="d-block h-100 w-100"
+              src="https://source.unsplash.com/random/200×700/?fastfood"
               alt=""
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
           </div>
         </div>
