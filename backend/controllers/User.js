@@ -8,12 +8,17 @@ const create = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   } else {
     try {
-      const user = await Model.create({ ...req.body });
+      const emailValidation = await Model.findOne({ email: req.body.email });
 
-      res.status(200).send(user);
+      if (emailValidation) {
+        return res.status(403).send({ message: "User Already Registered" });
+      } else {
+        const user = await Model.create({ ...req.body });
+        return res.status(200).send({ user });
+      }
     } catch (error) {
-      console.log(error);
-      res.status(500).send("Internal Server Error");
+      console.error(error);
+      return res.status(400).json({ message: "Enter Valid Credentials." });
     }
   }
 };

@@ -10,7 +10,7 @@ MONGODB_CONNECTION();
 
 app.use(express.json());
 app.use(cors());
-app.use("/", userRouter);
+app.use("/api", userRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello" });
