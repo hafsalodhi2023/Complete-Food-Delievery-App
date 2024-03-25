@@ -1,6 +1,11 @@
 const Model = require("../models/Users");
+const bycrpt = require("bcryptjs");
 
 const create = async (req, res) => {
+  const salt = await bycrpt.genSalt(10);
+  const secPassword = await bycrpt.hash(req.body.password, salt);
+  req.body.password = secPassword;
+
   try {
     const validation = await Model.findOne({ email: req.body.email });
 

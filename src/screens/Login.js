@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -8,6 +10,7 @@ export default function Register() {
     password: "",
   });
   let navigate = useNavigate();
+  const [pstatus, setPstatus] = useState(false);
 
   const changeHandler = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -62,6 +65,8 @@ export default function Register() {
               name="email"
               value={credentials.email}
               onChange={changeHandler}
+              required
+              autoComplete="off"
             />
           </div>
           <div className="mb-4">
@@ -71,14 +76,57 @@ export default function Register() {
             >
               Password :
             </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={changeHandler}
-            />
+            {pstatus ? (
+              <div style={{ position: "relative" }}>
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setPstatus(!pstatus);
+                  }}
+                  icon={faEyeSlash}
+                  style={{
+                    position: "absolute",
+                    right: "10",
+                    top: "calc(1/2)",
+                    transform: "translateY(50%)",
+                  }}
+                />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={changeHandler}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+            ) : (
+              <div style={{ position: "relative" }}>
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setPstatus(!pstatus);
+                  }}
+                  icon={faEye}
+                  style={{
+                    position: "absolute",
+                    right: "10",
+                    top: "calc(1/2)",
+                    transform: "translateY(50%)",
+                  }}
+                />
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={changeHandler}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+            )}
           </div>
           <button
             type="submit"

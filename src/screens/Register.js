@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -9,6 +11,9 @@ export default function Register() {
     password: "",
     location: "",
   });
+
+  const [pstatus, setPstatus] = useState(false);
+
   let navigate = useNavigate();
 
   const changeHandler = (event) => {
@@ -63,6 +68,8 @@ export default function Register() {
               name="username"
               value={credentials.username}
               onChange={changeHandler}
+              required
+              autoComplete="off"
             />
           </div>
           <div className="mb-4">
@@ -79,6 +86,8 @@ export default function Register() {
               name="email"
               value={credentials.email}
               onChange={changeHandler}
+              required
+              autoComplete="off"
             />
           </div>
           <div className="mb-4">
@@ -88,14 +97,57 @@ export default function Register() {
             >
               Password :
             </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={changeHandler}
-            />
+            {pstatus ? (
+              <div style={{ position: "relative" }}>
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setPstatus(!pstatus);
+                  }}
+                  icon={faEyeSlash}
+                  style={{
+                    position: "absolute",
+                    right: "10",
+                    top: "calc(1/2)",
+                    transform: "translateY(50%)",
+                  }}
+                />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={changeHandler}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+            ) : (
+              <div style={{ position: "relative" }}>
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setPstatus(!pstatus);
+                  }}
+                  icon={faEye}
+                  style={{
+                    position: "absolute",
+                    right: "10",
+                    top: "calc(1/2)",
+                    transform: "translateY(50%)",
+                  }}
+                />
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={changeHandler}
+                  required
+                  autoComplete="off"
+                />
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -111,6 +163,8 @@ export default function Register() {
               name="location"
               value={credentials.location}
               onChange={changeHandler}
+              required
+              autoComplete="off"
             />
           </div>
           <button
