@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -9,6 +9,7 @@ export default function Register() {
     password: "",
     location: "",
   });
+  let navigate = useNavigate();
 
   const changeHandler = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -16,30 +17,24 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:5000/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-      });
-      const json = await response.json();
 
-      if (response.status === 400) {
-        alert("Enter Valid Credentials.");
-      }
+    const response = await fetch("http://localhost:5000/api/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
 
-      if (response.status === 403) {
-        alert(json.message);
-      }
+    const json = await response.json();
 
-      if (response.status === 200) {
-        alert("Created User Successfully!");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to create user. Please try again.");
+    if (response.status === 403) {
+      alert(json.message);
+    } else if (response.status === 400) {
+      alert(json.error.message);
+    } else if (response.status === 200) {
+      alert(json.success);
+      navigate("/login");
     }
   };
 

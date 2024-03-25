@@ -3,29 +3,29 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
-    max: [30, "Wrong Username! Username length maximum 20"],
-    min: [8, "Wrong Username! Username length minimum 8"],
+    required: [true, "Username is required."],
+    minlength: [8, "Username length must be at least 8 characters."],
+    maxlength: [30, "Username length must not exceed 30 characters."],
   },
   location: {
     type: String,
-    required: true,
+    required: [true, "Location is required."],
   },
   email: {
     type: String,
     unique: true,
-    required: true,
+    required: [true, "Email is required."],
   },
   password: {
     type: String,
-    required: true,
-    max: [30, "Wrong Password! Password length maximum 30"],
-    min: [8, "Wrong Password! Password length minimum 8"],
+    required: [true, "Password is required."],
+    minlength: [8, "Password length must be at least 8 characters."],
+    maxlength: [30, "Password length must not exceed 30 characters."],
   },
-  Date: {
+  createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
-module.exports = mongoose.model("Users", UserSchema);
+module.exports = mongoose.model("User", UserSchema);
