@@ -88,6 +88,7 @@ export default function Register() {
                     right: "10",
                     top: "calc(1/2)",
                     transform: "translateY(50%)",
+                    color: "#606468",
                   }}
                 />
                 <input
@@ -113,6 +114,7 @@ export default function Register() {
                     right: "10",
                     top: "calc(1/2)",
                     transform: "translateY(50%)",
+                    color: "#606468",
                   }}
                 />
                 <input
@@ -132,14 +134,8 @@ export default function Register() {
             type="submit"
             className="btn border-2 border-white text-white rounded"
           >
-            Submit
+            Login
           </button>
-          <Link
-            to="/register"
-            className="m-3 border-2 text-white btn btn-danger"
-          >
-            I' m a New User
-          </Link>
         </form>
       </div>
     </>
