@@ -1,9 +1,12 @@
+require("dotenv").config();
+
 const Model = require("../models/Users");
-const bycrpt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const create = async (req, res) => {
-  const salt = await bycrpt.genSalt(10);
-  const secPassword = await bycrpt.hash(req.body.password, salt);
+  const salt = await bcrypt.genSalt(10);
+  const secPassword = await bcrypt.hash(req.body.password, salt);
   req.body.password = secPassword;
 
   try {
@@ -18,7 +21,7 @@ const create = async (req, res) => {
         .send({ success: "User Created Successfully!", data });
     }
   } catch (error) {
-    return res.status(400).send({ error: error });
+    return res.status(400).send({ message: error });
   }
 };
 
@@ -26,6 +29,11 @@ const validate = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Model.findOne({ email });
+    const jwtSecret = process.env.JWT_SECRET;
+    const userData = { id: user._id };
+    const authToken = jwt.sign(userData, jwtSecret);
+
+    const pwdCompare = await bcrypt.compare(password, user.password);
 
     if (!user) {
       return res
@@ -33,13 +41,16 @@ const validate = async (req, res) => {
         .json({ message: "Please Enter Valid Credentials." });
     }
 
-    if (password !== user.password) {
+    if (!pwdCompare) {
       return res.status(400).json({ message: "Invalid Password." });
     }
 
-    return res.status(200).json({ success: "You Are Successfully Logged In!" });
+    return res.status(200).json({
+      success: "You Are Successfully Logged In!",
+      authToken: authToken,
+    });
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error." });
+    return res.status(500).json({ message: "Internal Server Error." });
   }
 };
 

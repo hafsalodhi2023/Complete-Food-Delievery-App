@@ -19,7 +19,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/user/login", {
+    const response = await fetch("http://localhost:5000/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,6 +36,7 @@ export default function Register() {
       alert(json.message);
     } else {
       alert(json.success);
+      localStorage.setItem("authToken", json.authToken);
       navigate("/");
     }
   };
