@@ -1,6 +1,6 @@
 const get = async (req, res) => {
   try {
-    res.status(200).send(global.foodItems);
+    res.status(200).send(global.categories);
   } catch (error) {
     res.status(500).send("Internal Server Error.");
   }
