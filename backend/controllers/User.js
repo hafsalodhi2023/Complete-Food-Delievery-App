@@ -29,7 +29,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Model.findOne({ email });
-    const jwtSecret = process.env.JWT_SECRET;
+    const jwtSecret = process.env.SECRET_KEY;
     const userData = { id: user._id };
     const authToken = jwt.sign(userData, jwtSecret);
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Carousel } from "../components/Carousel";
 
 export default function Home() {
   const [categories, setcategories] = useState([]);
@@ -167,9 +166,8 @@ export default function Home() {
                           key={filterItems._id}
                         >
                           <Card
-                            foodName={filterItems.name}
+                            foodItems={filterItems}
                             options={filterItems.options[0]}
-                            imgSrc={filterItems.img}
                           ></Card>
                         </div>
                       ))

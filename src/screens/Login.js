@@ -100,7 +100,7 @@ export default function Register() {
                   value={credentials.password}
                   onChange={changeHandler}
                   required
-                  autoComplete="off"
+                  autocomplete="off"
                 />
               </div>
             ) : (
