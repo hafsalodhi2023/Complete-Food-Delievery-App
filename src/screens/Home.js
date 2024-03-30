@@ -4,13 +4,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const baseURL = "https://food-delievery-app-rho.vercel.app/";
   const [categories, setcategories] = useState([]);
   const [items, setitems] = useState([]);
   const [search, setsearch] = useState("");
 
   const loadItemsData = async () => {
-    const response = await fetch(`${baseURL}api/items`, {
+    const response = await fetch(`/api/items`, {
       method: "GET",
     });
     const json = await response.json();
@@ -18,7 +17,7 @@ export default function Home() {
   };
 
   const loadCategoriesData = async () => {
-    const response = await fetch(`${baseURL}api/categories/`, {
+    const response = await fetch(`/api/categories/`, {
       method: "GET",
     });
     const json = await response.json();

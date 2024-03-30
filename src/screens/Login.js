@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 export default function Register() {
-  const baseURL = "https://food-delievery-app-rho.vercel.app/";
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -20,7 +19,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`${baseURL}api/user/login`, {
+    const response = await fetch(`/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
