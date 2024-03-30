@@ -9,7 +9,7 @@ export default function Card(props) {
       <img
         src={props.foodItems.img}
         className="card-img-top w-100"
-        alt="Lamb Kebab Skewers"
+        alt="Lamb Kebab Skewer"
         style={{ height: "200px", objectFit: "cover" }}
       />
       <div className="card-body">
@@ -42,7 +42,7 @@ export default function Card(props) {
             })}
           </select>
           <div className="mt-2 fs-5 fw-bold " style={{ paddingLeft: "1rem" }}>
-            Total Price:
+            Total Price: &nbsp;&nbsp;PKR.{props.foodItems.options[0].full}/-
           </div>
         </div>
       </div>
