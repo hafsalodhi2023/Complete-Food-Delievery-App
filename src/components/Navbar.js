@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Badge } from "react-bootstrap";
 
 export default function Navbar() {
   let navigate = useNavigate();
@@ -55,17 +54,6 @@ export default function Navbar() {
             </div>
           ) : (
             <>
-              <div
-                className="btn bg-white text-success mx-1"
-                onClick={() => {
-                  navigate("/cart");
-                }}
-              >
-                My Cart &nbsp;
-                <Badge pill bg="success">
-                  3
-                </Badge>
-              </div>
               <div
                 className="btn bg-white text-danger mx-1"
                 onClick={() => {

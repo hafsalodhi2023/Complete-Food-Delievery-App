@@ -94,7 +94,7 @@ export default function Home() {
               style={{ width: "100%", height: "90vh" }}
             >
               <img
-                src="https://source.unsplash.com/random/600×400/?burger"
+                src="https://source.unsplash.com/random/1366x768/?burger"
                 alt=""
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
@@ -104,7 +104,7 @@ export default function Home() {
               style={{ width: "100%", height: "100vh" }}
             >
               <img
-                src="https://source.unsplash.com/random/200×700/?pizza"
+                src="https://source.unsplash.com/random/1366x768/?pizza"
                 alt=""
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
@@ -114,7 +114,7 @@ export default function Home() {
               style={{ width: "100%", height: "100vh" }}
             >
               <img
-                src="https://source.unsplash.com/random/200×700/?fastfood"
+                src="https://source.unsplash.com/random/1366x768/?small-cake"
                 alt=""
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
